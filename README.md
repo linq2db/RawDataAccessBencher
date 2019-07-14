@@ -4,6 +4,7 @@ branch `custom` contains modified version of benchmark for our internal use with
 - removed excessive logging to log only test results
 - remove logging of `change tracking` benchmarks, as we don't support it
 - moved connection string configuration to single place: `BenchController.ConnectionString`
+- added [results folder](https://github.com/linq2db/RawDataAccessBencher/tree/custom/Results/linq2db)
 
 RawDataAccessBencher
 ====================
