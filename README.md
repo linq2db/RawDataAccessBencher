@@ -1,3 +1,9 @@
+Linq To DB Notes
+=
+branch `custom` contains modified version of benchmark for our internal use with following changes:
+- removed excessive logging to log only test results
+- remove logging of `change tracking` benchmarks, as we don't support it
+
 RawDataAccessBencher
 ====================
 Bench code which tests entity materialization speed of various .NET data access / ORM implementations. The tests focus solely on entity / object materialization and therefore don't do any fancy queries, graph fetches or other nice things which one expects from ORMs. It's not a scientific benchmark system, but an indication to see which framework is fast and which is slow compared to each other. See for more details about what this test is not: http://weblogs.asp.net/fbouma/archive/2014/02/13/re-create-benchmarks-and-results-that-have-value.aspx
