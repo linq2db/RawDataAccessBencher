@@ -3,6 +3,7 @@ Linq To DB Notes
 branch `custom` contains modified version of benchmark for our internal use with following changes:
 - removed excessive logging to log only test results
 - remove logging of `change tracking` benchmarks, as we don't support it
+- moved connection string configuration to single place: `BenchController.ConnectionString`
 
 RawDataAccessBencher
 ====================
