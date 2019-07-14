@@ -78,12 +78,12 @@ namespace RawBencher
             RegisteredBenchers.Add(new ChainCompiledBencher() { CommandText = SqlSelectCommandText, ConnectionStringToUse = ConnectionString });
 
 #if !NETCOREAPP
-            RegisteredBenchers.Add(new MassiveBencher());
-            RegisteredBenchers.Add(new NHibernateNormalBencher());
-            RegisteredBenchers.Add(new LinqToSqlNoChangeTrackingBencher());
-            RegisteredBenchers.Add(new LinqToSqlNormalBencher());
-            RegisteredBenchers.Add(new EntityFrameworkNoChangeTrackingBencher());
-            RegisteredBenchers.Add(new EntityFrameworkNormalBencher());
+            RegisteredBenchers.Add(new MassiveBencher() { ConnectionStringToUse = ConnectionString });
+            RegisteredBenchers.Add(new NHibernateNormalBencher() {ConnectionStringToUse = ConnectionString });
+            RegisteredBenchers.Add(new LinqToSqlNoChangeTrackingBencher() { ConnectionStringToUse = ConnectionString });
+            RegisteredBenchers.Add(new LinqToSqlNormalBencher() { ConnectionStringToUse = ConnectionString });
+            RegisteredBenchers.Add(new EntityFrameworkNoChangeTrackingBencher() {ConnectionStringToUse = ConnectionString });
+            RegisteredBenchers.Add(new EntityFrameworkNormalBencher() {ConnectionStringToUse = ConnectionString });
             RegisteredBenchers.Add(new PetaPocoBencher() { CommandText = SqlSelectCommandText, ConnectionStringToUse = ConnectionString });
             RegisteredBenchers.Add(new PetaPocoFastBencher() { CommandText = SqlSelectCommandText, ConnectionStringToUse = ConnectionString });
 #endif

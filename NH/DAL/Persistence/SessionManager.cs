@@ -11,33 +11,31 @@ namespace NH.Bencher
 	public static partial class SessionManager
 	{
 		#region Class Member Declarations
-		private static readonly ISessionFactory _sessionFactory;
-		private static readonly Configuration _configuration;
+		private static ISessionFactory _sessionFactory;
 		#endregion
-
-		/// <summary>Initializes the <see cref="SessionManager"/> class.</summary>
-		static SessionManager()
-		{
-			_configuration = new Configuration();
-			_configuration.Configure();
-			_configuration.AddAssembly(typeof(SessionManager).Assembly);
-			_sessionFactory = _configuration.BuildSessionFactory();
-		}
 
 		/// <summary>Opens a new session on the existing session factory</summary>
 		/// <returns>ready to use ISession instance</returns>
 		/// <remarks>Dispose this instance after you're done with the instance, so after lazy loading has occured. The returned
 		/// ISession instance is <b>not</b> thread safe.</remarks>
-		public static ISession OpenSession()
+		public static ISession OpenSession(string connectionString)
 		{
-			return _sessionFactory.OpenSession();
+			return GetSessionFactory(connectionString).OpenSession();
 		}
 
 		#region Class Property Declarations
 		/// <summary>Gets the session factory created from the initialized configuration. The returned factory is thread safe.</summary>
-		public static ISessionFactory SessionFactory
+		public static ISessionFactory GetSessionFactory(string connectionString)
 		{
-			get { return _sessionFactory; }
+            if (_sessionFactory == null)
+            {
+                var configuration = new Configuration();
+                configuration.SetProperty("connection.connection_string", connectionString);
+                configuration.Configure();
+                configuration.AddAssembly(typeof(SessionManager).Assembly);
+                _sessionFactory = configuration.BuildSessionFactory();
+            }
+            return _sessionFactory;
 		}
 		#endregion
 	}

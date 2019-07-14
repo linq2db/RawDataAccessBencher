@@ -103,11 +103,7 @@ namespace AdventureWorks.Dal.Adapter.DatabaseSpecific
 		/// <returns>connection string read</returns>
 		private static string ReadConnectionStringFromConfig()
 		{
-#if NETSTANDARD2_0
 			return RuntimeConfiguration.GetConnectionString(ConnectionStringKeyName);
-#else
-			return ConfigFileHelper.ReadConnectionStringFromConfig(ConnectionStringKeyName);
-#endif
 		}
 		
 		/// <summary>Sets the per instance compatibility level on the dqe instance specified.</summary>

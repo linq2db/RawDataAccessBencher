@@ -30,7 +30,7 @@ namespace RawBencher.Benchers
 		/// <returns>The fetched element, or null if not found</returns>
 		public override NH.Bencher.EntityClasses.SalesOrderHeader FetchIndividual(int key)
 		{
-			using(var session = SessionManager.OpenSession())
+			using(var session = SessionManager.OpenSession(ConnectionStringToUse))
 			{
 				return session.Get<NH.Bencher.EntityClasses.SalesOrderHeader>(key);
 			}
@@ -43,7 +43,7 @@ namespace RawBencher.Benchers
 		/// <returns>the set fetched</returns>
 		public override IEnumerable<NH.Bencher.EntityClasses.SalesOrderHeader> FetchSet()
 		{
-			using(var session = SessionManager.OpenSession())
+			using(var session = SessionManager.OpenSession(ConnectionStringToUse))
 			{
 				return session.Query<NH.Bencher.EntityClasses.SalesOrderHeader>().ToList();
 			}
@@ -56,7 +56,7 @@ namespace RawBencher.Benchers
 		/// <returns>the graph fetched</returns>
 		public override IEnumerable<NH.Bencher.EntityClasses.SalesOrderHeader> FetchGraph()
 		{
-			using(var session = SessionManager.OpenSession())
+			using(var session = SessionManager.OpenSession(ConnectionStringToUse))
 			{
 				return session.Query<NH.Bencher.EntityClasses.SalesOrderHeader>()
 					.Where(soh => soh.SalesOrderId > 50000 && soh.SalesOrderId <= 51000)
@@ -69,7 +69,7 @@ namespace RawBencher.Benchers
 
 		public override async Task<IEnumerable<NH.Bencher.EntityClasses.SalesOrderHeader>> FetchGraphAsync()
 		{
-			using(var session = SessionManager.OpenSession())
+			using(var session = SessionManager.OpenSession(ConnectionStringToUse))
 			{
 				return await session.Query<NH.Bencher.EntityClasses.SalesOrderHeader>()
 							  .Where(soh => soh.SalesOrderId > 50000 && soh.SalesOrderId <= 51000)
@@ -118,5 +118,7 @@ namespace RawBencher.Benchers
 		{
 			return CreateFrameworkName("NHibernate v{0} (v{1})", typeof(ISession));
 		}
-	}
+
+        public string ConnectionStringToUse { get; set; }
+    }
 }

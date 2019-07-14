@@ -32,7 +32,7 @@ namespace EF6.Bencher
 		}
 		
 		/// <summary>Initializes a new instance of the <see cref="AWDataContext"/> class</summary>
-		public AWDataContext(string connectionString) : base(connectionString)
+		public AWDataContext(string connectionString) : base("metadata=res://*/AW.csdl|res://*/AW.ssdl|res://*/AW.msl;provider=System.Data.SqlClient;provider connection string=\"" + connectionString + "\"")
 		{
 			Initialize();
 		}

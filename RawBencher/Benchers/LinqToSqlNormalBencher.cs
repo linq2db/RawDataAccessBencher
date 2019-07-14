@@ -29,7 +29,7 @@ namespace RawBencher.Benchers
 		/// <returns>The fetched element, or null if not found</returns>
 		public override L2S.Bencher.EntityClasses.SalesOrderHeader FetchIndividual(int key)
 		{
-			using(var ctx = new L2SBencherDataContext())
+			using(var ctx = new L2SBencherDataContext(ConnectionStringToUse))
 			{
 				return ctx.SalesOrderHeaders.FirstOrDefault(e => e.SalesOrderId == key);
 			}
@@ -42,7 +42,7 @@ namespace RawBencher.Benchers
 		/// <returns>the set fetched</returns>
 		public override IEnumerable<L2S.Bencher.EntityClasses.SalesOrderHeader> FetchSet()
 		{
-			using(var ctx = new L2SBencherDataContext())
+			using(var ctx = new L2SBencherDataContext(ConnectionStringToUse))
 			{
 				return ctx.SalesOrderHeaders.ToList();
 			}
@@ -55,7 +55,7 @@ namespace RawBencher.Benchers
 		/// <returns>the graph fetched</returns>
 		public override IEnumerable<L2S.Bencher.EntityClasses.SalesOrderHeader> FetchGraph()
 		{
-			using(var ctx = new L2SBencherDataContext())
+			using(var ctx = new L2SBencherDataContext(ConnectionStringToUse))
 			{
 				var loadOptions = new DataLoadOptions();
 				loadOptions.LoadWith<L2S.Bencher.EntityClasses.SalesOrderHeader>(soh=>soh.SalesOrderDetails);
@@ -106,5 +106,7 @@ namespace RawBencher.Benchers
 		{
 			return CreateFrameworkName("Linq to Sql v{0} (v{1})", typeof(System.Data.Linq.DataContext));
 		}
-	}
+
+        public string ConnectionStringToUse { get; set; }
+    }
 }

@@ -118,36 +118,13 @@ namespace VanillaMassive {
 	}
 
 	/// <summary>
-	/// Convenience class for opening/executing data
-	/// </summary>
-	public static class DB
-	{
-		public static DynamicModel Current
-		{
-			get
-			{
-				if(ConfigurationManager.ConnectionStrings.Count > 1)
-				{
-					return new DynamicModel(ConfigurationManager.ConnectionStrings[1].Name);
-				}
-				throw new InvalidOperationException("Need a connection string name - can't determine what it is");
-			}
-		}
-	}
-
-	/// <summary>
 	/// A class that wraps your database table in Dynamic Funtime
 	/// </summary>
 	public class DynamicModel : DynamicObject
 	{
 		DbProviderFactory _factory;
 		string ConnectionString;
-		public static DynamicModel Open(string connectionStringName)
-		{
-			dynamic dm = new DynamicModel(connectionStringName);
-			return dm;
-		}
-		public DynamicModel(string connectionStringName, string tableName = "",
+		public DynamicModel(string connectionString, string tableName = "",
 			string primaryKeyField = "", string descriptorField = "")
 		{
 			TableName = tableName == "" ? this.GetType().Name : tableName;
@@ -155,11 +132,8 @@ namespace VanillaMassive {
 			DescriptorField = descriptorField;
 			var _providerName = "System.Data.SqlClient";
 
-			if(!string.IsNullOrWhiteSpace(ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName))
-				_providerName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
-
 			_factory = DbProviderFactories.GetFactory(_providerName);
-			ConnectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
+			ConnectionString = connectionString;
 		}
 
 		/// <summary>
