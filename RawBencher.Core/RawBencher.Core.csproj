@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
@@ -14,6 +14,7 @@
       <Compile Include="..\RawBencher\Benchers\DataTableBencher.cs" Link="Benchers\DataTableBencher.cs" />
       <Compile Include="..\RawBencher\Benchers\EntityFrameworkCoreNoChangeTrackingBencher.cs" Link="Benchers\EntityFrameworkCoreNoChangeTrackingBencher.cs" />
       <Compile Include="..\RawBencher\Benchers\EntityFrameworkCoreNormalBencher.cs" Link="Benchers\EntityFrameworkCoreNormalBencher.cs" />
+      <Compile Include="..\RawBencher\Benchers\EntityFrameworkCoreDTOBencher.cs" Link="Benchers\EntityFrameworkCoreDTOBencher.cs" />
       <Compile Include="..\RawBencher\Benchers\FetchOnlyBencherBase.cs" Link="Benchers\FetchOnlyBencherBase.cs" />
       <Compile Include="..\RawBencher\Benchers\HandCodedBencher.cs" Link="Benchers\HandCodedBencher.cs" />
       <Compile Include="..\RawBencher\Benchers\HandCodedBencherUsingBoxing.cs" Link="Benchers\HandCodedBencherUsingBoxing.cs" />
@@ -29,6 +30,7 @@
       <Compile Include="..\RawBencher\Benchers\LLBLGenProNoChangeTrackingQuerySpecPocoBencher.cs" Link="Benchers\LLBLGenProNoChangeTrackingQuerySpecPocoBencher.cs" />
       <Compile Include="..\RawBencher\Benchers\LLBLGenProNoChangeTrackingRawSQLPocoBencher.cs" Link="Benchers\LLBLGenProNoChangeTrackingRawSQLPocoBencher.cs" />
       <Compile Include="..\RawBencher\Benchers\LLBLGenProNormalBencher.cs" Link="Benchers\LLBLGenProNormalBencher.cs" />
+      <Compile Include="..\RawBencher\Benchers\LLBLGenProDTOBencher.cs" Link="Benchers\LLBLGenProDTOBencher.cs" />
       <Compile Include="..\RawBencher\Benchers\LLBLGenProResultsetCachingBencher.cs" Link="Benchers\LLBLGenProResultsetCachingBencher.cs" />
       <Compile Include="..\RawBencher\Benchers\NPocoBencher.cs" Link="Benchers\NPocoBencher.cs" />
       <Compile Include="..\RawBencher\Benchers\OrmLiteBencher.cs" Link="Benchers\OrmLiteBencher.cs" />
@@ -43,28 +45,32 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\EFCore\EFCore.Dtos.Persistence\EFCore.Dtos.Persistence.csproj" />
+      <ProjectReference Include="..\EFCore\EFCore.Dtos\EFCore.Dtos.csproj" />
       <ProjectReference Include="..\EFCore\Model\EFCore.Bencher.Model.csproj" />
       <ProjectReference Include="..\EFCore\Persistence\EFCore.Bencher.Persistence.csproj" />
       <ProjectReference Include="..\LINQ2DB\DAL\LINQ2DB.Bencher.csproj" />
       <ProjectReference Include="..\LLBLGenPro\DatabaseGeneric\AdventureWorks.Dal.Adapter.csproj" />
       <ProjectReference Include="..\LLBLGenPro\DatabaseSpecific\AdventureWorks.Dal.AdapterDBSpecific.csproj" />
+      <ProjectReference Include="..\LLBLGenPro\LLBLGenPro.Dtos.Persistence\LLBLGenPro.Dtos.Persistence.csproj" />
+      <ProjectReference Include="..\LLBLGenPro\LLBLGenPro.Dtos\LLBLGenPro.Dtos.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Dapper" Version="1.60.6" />
-      <PackageReference Include="linq2db" Version="2.7.4" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
+      <PackageReference Include="Dapper" Version="2.0.30" />
+      <PackageReference Include="linq2db" Version="2.9.6" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
       <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
-      <PackageReference Include="NPoco" Version="4.0.1" />
-      <PackageReference Include="RepoDb" Version="1.9.8" />
-      <PackageReference Include="SD.LLBLGen.Pro.DQE.SqlServer" Version="5.5.3" />
-      <PackageReference Include="ServiceStack.OrmLite.SqlServer" Version="5.5.0" />
+      <PackageReference Include="NPoco" Version="4.0.2" />
+      <PackageReference Include="RepoDb" Version="1.10.6" />
+      <PackageReference Include="SD.LLBLGen.Pro.DQE.SqlServer" Version="5.6.1" />
+      <PackageReference Include="ServiceStack.OrmLite.SqlServer" Version="5.8.0" />
       <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-      <PackageReference Include="Tortuga.Anchor" Version="2.1.7001.32222" />
-      <PackageReference Include="Tortuga.Chain.CompiledMaterializers" Version="2.1.7009.34082" />
-      <PackageReference Include="Tortuga.Chain.Core" Version="2.1.7009.31212" />
-      <PackageReference Include="Tortuga.Chain.SqlServer" Version="2.1.7009.33175" />
-      <PackageReference Include="System.Data.SqlClient" Version="4.6.1" />
+      <PackageReference Include="Tortuga.Anchor" Version="3.1.7293.38400" />
+      <PackageReference Include="Tortuga.Chain.CompiledMaterializers" Version="3.2.0" />
+      <PackageReference Include="Tortuga.Chain.Core" Version="3.2.0" />
+      <PackageReference Include="Tortuga.Chain.SqlServer" Version="3.2.0" />
+      <PackageReference Include="System.Data.SqlClient" Version="4.8.0" />
     </ItemGroup>
 
 </Project>

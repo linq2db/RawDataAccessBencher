@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using static System.Linq.Queryable;
+using static System.Linq.Enumerable;
 using System.Threading.Tasks;
 using EFCore.Bencher;
 using EFCore.Bencher.EntityClasses;
@@ -145,7 +145,6 @@ namespace RawBencher.Benchers
 
 		protected override void DeleteInserted(IEnumerable<CreditCard> toDelete)
 		{
-
 			//using(var ctx = new AWDataContext(this.ConnectionStringToUse))
 			//{
 			//	ctx.CreditCards.RemoveRange(toDelete);
